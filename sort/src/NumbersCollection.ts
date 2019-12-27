@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import { Sorter } from './Sorter';
 export class NumbersCollection extends Sorter {
   constructor(public data: number[]) {
     super();
   }
+=======
+export class NumbersCollection {
+  constructor(public data: number[]) {}
+>>>>>>> d7ec145ba5deb9fcd5535cb2d173e42deffa3fbf
 
   get length(): number {
     return this.data.length;

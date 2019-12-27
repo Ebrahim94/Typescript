@@ -1,4 +1,5 @@
 "use strict";
+<<<<<<< HEAD
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -20,6 +21,12 @@ var CharactersCollection = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.data = data;
         return _this;
+=======
+Object.defineProperty(exports, "__esModule", { value: true });
+var CharactersCollection = /** @class */ (function () {
+    function CharactersCollection(data) {
+        this.data = data;
+>>>>>>> d7ec145ba5deb9fcd5535cb2d173e42deffa3fbf
     }
     Object.defineProperty(CharactersCollection.prototype, "length", {
         get: function () {
@@ -39,5 +46,9 @@ var CharactersCollection = /** @class */ (function (_super) {
         this.data = temp.join('');
     };
     return CharactersCollection;
+<<<<<<< HEAD
 }(Sorter_1.Sorter));
+=======
+}());
+>>>>>>> d7ec145ba5deb9fcd5535cb2d173e42deffa3fbf
 exports.CharactersCollection = CharactersCollection;
