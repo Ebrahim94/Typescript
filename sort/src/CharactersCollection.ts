@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { Sorter } from './Sorter';
 
 export class CharactersCollection extends Sorter {
   constructor(public data: string) {
     super();
   }
+=======
+export class CharactersCollection {
+  constructor(public data: string) {}
+>>>>>>> d7ec145... added sorter
 
   get length(): number {
     return this.data.length;
