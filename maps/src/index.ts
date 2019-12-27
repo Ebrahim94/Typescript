@@ -1,10 +1,10 @@
 import { User } from './User'; //community convention is to never use default exports
 import { Company } from './Company';
+import { CustomMap } from './CustomMap';
 
 let user = new User();
-
-console.log(user);
-
 let company = new Company();
+const customMap = new CustomMap('#map');
 
-console.log(company);
+customMap.addMarker(user);
+customMap.addMarker(company);
