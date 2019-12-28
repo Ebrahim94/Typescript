@@ -1,16 +1,10 @@
-import { CsvFileReader } from './CsvFileReader';
+import { MatchReader } from './MatchReader';
+import { MatchResult } from './MatchResult';
 
-const reader = new CsvFileReader('./football.csv');
+const reader = new MatchReader('./football.csv');
 reader.read();
 //primary goal is to signal to other engineers that these are all closely related
 //values
-enum MatchResult {
-  HomeWin = 'H',
-  AwayWin = 'A',
-  Draw = 'D'
-}
-
-MatchResult.Draw;
 
 let manUnitedWins = 0;
 
