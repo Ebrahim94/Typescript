@@ -1,7 +1,8 @@
-import axios, { AxiosResponse } from 'axios';
-import { Eventing } from './Eventing';
-import { Sync } from './Sync';
+import { Model } from './Model';
 import { Attributes } from './Attributes';
+import { ApiSync } from './ApiSync';
+import { Eventing } from './Eventing';
+import { Collection } from './Collection';
 
 export interface UserProps {
   name?: string;
@@ -13,51 +14,22 @@ const rootUrl = 'http://localhost:3000/users';
 
 type CallBack = () => void;
 
-export class User {
-  public events: Eventing = new Eventing();
-  public sync: Sync<UserProps> = new Sync<UserProps>(rootUrl);
-  public attributes: Attributes<UserProps>;
-
-  constructor(public data: UserProps) {
-    this.attributes = new Attributes<UserProps>(this.data);
+export class User extends Model<UserProps> {
+  static buildUser(attrs: UserProps): User {
+    return new User(
+      new Attributes<UserProps>(attrs),
+      new Eventing(),
+      new ApiSync(rootUrl)
+    );
   }
 
-  get on() {
-    return this.events.on;
-  }
-
-  get trigger() {
-    return this.events.trigger;
-  }
-
-  get get() {
-    return this.attributes.get;
-  }
-
-  set(update: UserProps): void {
-    this.attributes.set(update);
-    this.events.trigger('change');
-  }
-
-  fetch(): void {
-    const id = this.attributes.get('id');
-    if (typeof id !== 'number') {
-      throw new Error('cannot fetch without an id');
-    }
-    this.sync.fetch(id).then((res: AxiosResponse): void => {
-      this.set(res.data);
+  static buildUserCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(rootUrl, (json: UserProps) => {
+      return User.buildUser(json);
     });
   }
 
-  save(): void {
-    let temp = this.attributes.getAll();
-    this.sync
-      .save(temp)
-      .then((res: AxiosResponse): void => {
-        this.trigger('save');
-      })
-      .catch(() => {
-        this.trigger('error');
-      });
+  isAdminUser(): boolean {
+    return this.get('id') === 1;
   }
 }

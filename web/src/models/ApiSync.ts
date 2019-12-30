@@ -4,7 +4,7 @@ interface HasId {
   id?: number;
 }
 
-export class Sync<T extends HasId> {
+export class ApiSync<T extends HasId> {
   //fetch information from the db.json file acting as a pseudo database
   constructor(public rootUrl: string) {}
   fetch(id: number): AxiosPromise {
