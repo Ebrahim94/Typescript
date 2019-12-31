@@ -19,9 +19,6 @@ router.get('/', function (req, res) {
         res.send("<div><div>you are not logged in</div> <a href='/login'>Log In</a></div>");
     }
 });
-router.get('/login', function (req, res) {
-    res.send("\n  <form method=\"post\">\n  <div>\n    <label>Email</label>\n    <input name=\"email\"/>\n  </div>\n  <div>\n    <label>Password</label>\n    <input name=\"password\" type=\"password\" />\n  </div>\n  <button>login</button>\n  </form>\n  ");
-});
 router.post('/login', function (req, res) {
     var _a = req.body, email = _a.email, password = _a.password;
     if (email &&
